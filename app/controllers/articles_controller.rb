@@ -16,8 +16,22 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to article_path(@article), notice: '保存出来たよ'
     else
-      flash.now[:error] = '保存に失敗しまし'
+      flash.now[:error] = '保存に失敗しました'
       render :new
+    end
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to article_path(@article), notice: '更新出来ました'
+    else
+      flash.now[:error] = '更新できませんでした'
+      render :edit
     end
   end
 
