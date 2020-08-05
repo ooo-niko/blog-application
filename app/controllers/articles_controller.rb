@@ -2,12 +2,14 @@
 
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update]
+  before_action :authenticate_model!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @articles = Article.all
   end
 
-  def show; end
+  def show
+  end
 
   def new
     @article = Article.new
